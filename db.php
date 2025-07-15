@@ -2,10 +2,10 @@
 // db_config.php - Configuración centralizada de la base de datos
 
 class Database {
-    private $host = 'sql105.infinityfree.com';
-    private $dbname = 'task_manager';
-    private $username = 'if0_38944859';
-    private $password = 'Jesuspro12';
+    private $host = '';
+    private $dbname = '';
+    private $username = '';
+    private $password = '';
     private $pdo;
     
     public function __construct() {
