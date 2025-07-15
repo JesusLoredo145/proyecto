@@ -44,19 +44,19 @@ document.addEventListener('DOMContentLoaded', function(){
                 })
             });
 
-            // Verificar si la respuesta fue exitosa
+            // verificar si la respuesta fue exitosa
             if (!response.ok) {
                 throw new Error('Error en la respuesta del servidor');
             }
 
             const result = await response.json();
 
-            // Verificar si el servidor procesó correctamente la tarea
+            // verificar si el servidor proceso correctamente la tarea
             if (result.success) {
-                // Limpiar el input
+                // limpiar el input
                 taskInput.value = '';
                 
-                // Volver a cargar la lista de tareas
+                // volver a cargar la lista de tareas
                 await loadTasks();
                 
                 console.log('Tarea agregada exitosamente');
@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    // Función para cargar las tareas desde el servidor
+    // funcion para cargar las tareas desde el servidor
     async function loadTasks() {
         try {
             const response = await fetch('get_tasks.php');
@@ -81,10 +81,10 @@ document.addEventListener('DOMContentLoaded', function(){
 
             const tasks = await response.json();
             
-            // Limpiar la lista actual
+            // limpiar la lista actual
             taskList.innerHTML = '';
             
-            // Agregar cada tarea a la lista
+            // agregar cada tarea a la lista
             tasks.forEach(task => {
                 const taskElement = createTaskElement(task);
                 taskList.appendChild(taskElement);
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    // Función para crear un elemento de tarea en el DOM
+    // funcion para crear un elemento de tarea en el DOM
     function createTaskElement(task) {
         const li = document.createElement('li');
         li.className = 'task-item';
@@ -108,7 +108,7 @@ document.addEventListener('DOMContentLoaded', function(){
         return li;
     }
 
-    // Función para mostrar mensajes de error
+    // funcion para mostrar mensajes de error
     function showError(message) {
         if (errorMessage) {
             errorMessage.textContent = message;
@@ -118,21 +118,21 @@ document.addEventListener('DOMContentLoaded', function(){
         }
     }
 
-    // Función para limpiar mensajes de error
+    // funcion para limpiar mensajes de error
     function clearError() {
         if (errorMessage) {
             errorMessage.style.display = 'none';
         }
     }
 
-    // Función para escapar HTML y prevenir XSS
+    // funcion para escapar HTML y prevenir XSS
     function escapeHtml(text) {
         const div = document.createElement('div');
         div.textContent = text;
         return div.innerHTML;
     }
 
-    // Función global para eliminar tareas (opcional)
+    // funcion global para eliminar tareas
     window.deleteTask = async function(taskId) {
         if (confirm('¿Estás seguro de que quieres eliminar esta tarea?')) {
             try {
@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function(){
     };
 });
 
-// Versión alternativa usando XMLHttpRequest (para navegadores más antiguos)
+// version alternativa usando XMLHttpRequest (para navegadores más antiguos)
 function addTaskXHR() {
     const taskText = document.getElementById('taskInput').value.trim();
     
